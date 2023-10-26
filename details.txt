@@ -1,0 +1,20 @@
+Project: Procurement of Service Provider for Pest Control Service 
+ ABC: PhP1,300,000.00 
+Project: Procurement of Fire Extinguishers 
+ ABC: PhP842,332.70 
+Project: Printing of Coffee Table Book (Executive Summary of the SHS Tracer Study) 
+ ABC: PhP202,847.50 
+Project: Procurement of Cloud-based Productivity Suite for one year 
+ ABC: PhP78,562,500.00 
+Project: Procurement and Delivery of Parade Uniform; Training and Competition Uniform; and Rubber Shoes for the ASEAN Schools Games 2023 
+ ABC: PhP3,455,900.00 
+Project: Procurement of Label Stickers for Printers 
+ ABC: PhP498,750.00 
+Project: Procurement of the Consulting Services for the Development of FY 2023 NQESH Online Test Administration and Management 
+ ABC: PhP31,000,000.00 
+Project: Printing and Delivery of Fifty (50) Alternative Learning System (ALS) JHS Modules 
+ ABC: PhP329,274,514.00 
+Project: Hiring of Highly Technical Consultant 
+ ABC: PhP480,000.00 
+Project: Hiring of Highly Technical Consultant 
+ ABC: PhP480,000.00 

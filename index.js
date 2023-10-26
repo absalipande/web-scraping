@@ -1,27 +1,35 @@
+import * as cheerio from 'cheerio';
 import puppeteer from 'puppeteer';
-import fs from 'fs';
+import fs, { writeFileSync } from 'fs';
 
-async function run() {
-  const browser = await puppeteer.launch({ headless: 'new' });
+(async () => {
+  const browser = await puppeteer.launch({
+    headless: false,
+    defaultViewport: false,
+  });
   const page = await browser.newPage();
-  await page.goto('https://www.traversymedia.com');
 
-  const courses = await page.$$eval('#cscourses .card', (elements) =>
-    elements.map((e) => ({
-      title: e.querySelector('.card-body h3').innerText,
-      level: e.querySelector('.card-body .level').innerText,
-      url: e.querySelector('.card-footer a').href,
-    }))
-  );
-  console.log(courses);
+  await page.goto('https://www.deped.gov.ph/category/procurement/notices-of-award/');
 
-  // save as JSON file
-  fs.writeFile('courses.json', JSON.stringify(courses), (error) => {
-    if (error) throw error;
-    console.log('File saved!');
+  const depEdProjects = await page.content();
+  const $ = cheerio.load(depEdProjects);
+
+  const linkContent = [];
+  $('article div header h2 a').each((i, el) => {
+    const value = $(el).attr('href');
+    linkContent.push(value);
   });
 
-  await browser.close();
-}
+  for (let i = 0; i < linkContent.length; i++) {
+    await page.goto(linkContent[i]);
+    const depEdProjects = await page.content();
+    const $ = cheerio.load(depEdProjects);
+    const title = $('article > div > table > tbody > tr:nth-child(2) > td:nth-child(2)').text();
+    const abc = $('article > div > table > tbody > tr:nth-child(3) > td:nth-child(2)').text();
+    writeFileSync('details.txt', `Project: ${title} \n ABC: ${abc} \n`, {
+      flag: 'a',
+    });
+  }
 
-run();
+  await browser.close();
+})();
